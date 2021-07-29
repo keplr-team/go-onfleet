@@ -20,6 +20,29 @@ if err != nil {
 }
 fmt.Printf("%+v\n", workers)
 ```
+### What's inside
+- [ ] Workers API
+    - [ ] Create worker
+    - [x] List workers
+    - [x] Get workers by location
+    - [ ] Get single worker
+    - [ ] Update worker
+    - [ ] Delete worker
+
+
+- [ ] Hubs API
+    - [ ] Create hub
+    - [x] List hubs
+    - [ ] Update hub
+
+
+- [ ] Teams API
+    - [ ] Create team
+    - [x] List team
+    - [ ] Update team
+    - [ ] Get single team
+    - [ ] Delete team
+    
 ### What's next
 
 - [ ] unit testing
