@@ -14,10 +14,11 @@ type Address struct {
 	Country    string `json:"country"`
 	PostalCode string `json:"postalCode"`
 	Apartment  string `json:"apartment"`
+	Unparsed   string `json:"unparsed"`
 }
 
 type Hub struct {
-	ID       string    `json:"id"`
+	Id       string    `json:"id"`
 	Name     string    `json:"name"`
 	Location []float64 `json:"location"`
 	Address  Address   `json:"address"`

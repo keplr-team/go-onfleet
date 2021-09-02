@@ -23,6 +23,7 @@ type Client struct {
 	Workers      *WorkersService
 	Hubs         *HubsService
 	Teams        *TeamsService
+	Tasks        *TasksService
 }
 
 type service struct {
@@ -48,6 +49,7 @@ func NewClient(apiKey string) *Client {
 	client.Workers = (*WorkersService)(&svc)
 	client.Hubs = (*HubsService)(&svc)
 	client.Teams = (*TeamsService)(&svc)
+	client.Tasks = (*TasksService)(&svc)
 
 	return &client
 }
