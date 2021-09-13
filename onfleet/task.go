@@ -108,8 +108,11 @@ type TaskError struct {
 }
 
 type TasksCreateReturn struct {
-	Tasks  []Task      `json:"tasks"`
-	Errors []TaskError `json:"errors"`
+	Tasks  []Task `json:"tasks"`
+	Errors []struct {
+		Error TaskError         `json:"error"`
+		Task  TaskCreatePayload `json:"task"`
+	} `json:"errors"`
 }
 
 // List all tasks
@@ -156,7 +159,7 @@ func (s *TasksService) Create(ctx context.Context, payload *TasksCreatePayload) 
 		return nil, err
 	}
 	if len(res.Errors) != 0 {
-		return nil, errors.New(res.Errors[0].Message)
+		return nil, errors.New(res.Errors[0].Error.Message)
 	}
 
 	return res.Tasks, nil
