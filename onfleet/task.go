@@ -115,6 +115,11 @@ type TasksCreateReturn struct {
 	} `json:"errors"`
 }
 
+type TaskUpdatePayload struct {
+	Notes     string    `json:"notes"`
+	Container Container `json:"container"`
+}
+
 // List all tasks
 // https://docs.onfleet.com/reference#list-tasks
 func (s *TasksService) List(ctx context.Context, opts *TasksListOptions) ([]Task, error) {
@@ -163,4 +168,21 @@ func (s *TasksService) Create(ctx context.Context, payload *TasksCreatePayload) 
 	}
 
 	return res.Tasks, nil
+}
+
+// Update task
+// https://docs.onfleet.com/reference#update-task
+func (s *TasksService) Update(ctx context.Context, taskId string, payload *TaskUpdatePayload) (*Task, error) {
+	var res Task
+	req, err := s.client.NewRequest("PUT", "tasks/"+taskId, payload)
+	if err != nil {
+		return nil, err
+	}
+
+	err = s.client.Do(ctx, req, &res)
+	if err != nil {
+		return nil, err
+	}
+
+	return &res, nil
 }

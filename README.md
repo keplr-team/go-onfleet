@@ -48,7 +48,7 @@ fmt.Printf("%+v\n", workers)
 - [ ] Tasks API
   - [x] Create tasks
   - [x] List tasks
-  - [ ] Update task
+  - [x] Update task
   - [ ] Get single task
   - [ ] Delete task
 
