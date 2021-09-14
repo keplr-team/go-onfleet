@@ -88,7 +88,15 @@ type TasksListOptions struct {
 	Worker string           `url:"worker,omitempty"`
 }
 
-type TaskPayload struct {
+type TaskCreatePayload struct {
+	Destination   *Destination  `json:"destination"`
+	Recipients    []*Recipients `json:"recipients"`
+	CompleteAfter int64         `json:"completeAfter"`
+	Notes         string        `json:"notes"`
+	Container     Container     `json:"container"`
+}
+
+type TaskUpdatePayload struct {
 	Destination   *Destination  `json:"destination,omitempty"`
 	Recipients    []*Recipients `json:"recipients,omitempty"`
 	CompleteAfter int64         `json:"completeAfter,omitempty"`
@@ -97,7 +105,7 @@ type TaskPayload struct {
 }
 
 type TasksCreatePayload struct {
-	Tasks []TaskPayload `json:"tasks"`
+	Tasks []TaskCreatePayload `json:"tasks"`
 }
 
 type TaskError struct {
@@ -110,8 +118,8 @@ type TaskError struct {
 type TasksCreateReturn struct {
 	Tasks  []Task `json:"tasks"`
 	Errors []struct {
-		Error TaskError   `json:"error"`
-		Task  TaskPayload `json:"task"`
+		Error TaskError         `json:"error"`
+		Task  TaskCreatePayload `json:"task"`
 	} `json:"errors"`
 }
 
@@ -167,7 +175,7 @@ func (s *TasksService) Create(ctx context.Context, payload *TasksCreatePayload) 
 
 // Update task
 // https://docs.onfleet.com/reference#update-task
-func (s *TasksService) Update(ctx context.Context, taskId string, payload *TaskPayload) (*Task, error) {
+func (s *TasksService) Update(ctx context.Context, taskId string, payload *TaskUpdatePayload) (*Task, error) {
 	var res Task
 	req, err := s.client.NewRequest("PUT", "tasks/"+taskId, payload)
 	if err != nil {
