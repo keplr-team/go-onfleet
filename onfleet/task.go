@@ -10,30 +10,32 @@ import (
 type TasksService service
 
 type Task struct {
-	Id                string            `json:"id"`
-	TimeCreated       int64             `json:"timeCreated"`
-	TimeLastModified  int64             `json:"timeLastModified"`
-	Organization      string            `json:"organization"`
-	ShortID           string            `json:"shortId"`
-	TrackingURL       string            `json:"trackingURL"`
-	Worker            string            `json:"worker"`
-	Merchant          string            `json:"merchant"`
-	Executor          string            `json:"executor"`
-	Creator           string            `json:"creator"`
-	Dependencies      []interface{}     `json:"dependencies"`
-	State             int               `json:"state"`
-	CompleteAfter     int64             `json:"completeAfter"`
-	CompleteBefore    interface{}       `json:"completeBefore"`
-	PickupTask        bool              `json:"pickupTask"`
-	Notes             string            `json:"notes"`
-	CompletionDetails CompletionDetails `json:"completionDetails"`
-	Feedback          []interface{}     `json:"feedback"`
-	Metadata          []interface{}     `json:"metadata"`
-	Overrides         Overrides         `json:"overrides"`
-	Container         Container         `json:"container"`
-	Recipients        []Recipients      `json:"recipients"`
-	Destination       Destination       `json:"destination"`
-	DidAutoAssign     bool              `json:"didAutoAssign"`
+	Id                      string            `json:"id"`
+	TimeCreated             int64             `json:"timeCreated"`
+	TimeLastModified        int64             `json:"timeLastModified"`
+	Organization            string            `json:"organization"`
+	ShortID                 string            `json:"shortId"`
+	TrackingURL             string            `json:"trackingURL"`
+	Worker                  string            `json:"worker"`
+	Merchant                string            `json:"merchant"`
+	Executor                string            `json:"executor"`
+	Creator                 string            `json:"creator"`
+	Dependencies            []interface{}     `json:"dependencies"`
+	State                   int               `json:"state"`
+	CompleteAfter           int64             `json:"completeAfter"`
+	CompleteBefore          interface{}       `json:"completeBefore"`
+	PickupTask              bool              `json:"pickupTask"`
+	Notes                   string            `json:"notes"`
+	CompletionDetails       CompletionDetails `json:"completionDetails"`
+	Feedback                []interface{}     `json:"feedback"`
+	Metadata                []interface{}     `json:"metadata"`
+	Overrides               Overrides         `json:"overrides"`
+	Container               Container         `json:"container"`
+	Recipients              []Recipients      `json:"recipients"`
+	EstimatedCompletionTime int64             `json:"estimatedCompletionTime"`
+	EstimatedArrivalTime    int64             `json:"estimatedArrivalTime"`
+	Destination             Destination       `json:"destination"`
+	DidAutoAssign           bool              `json:"didAutoAssign"`
 }
 
 type CompletionDetails struct {
