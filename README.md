@@ -49,7 +49,7 @@ fmt.Printf("%+v\n", workers)
   - [x] Create tasks
   - [x] List tasks
   - [x] Update task
-  - [ ] Get single task
+  - [x] Get single task
   - [ ] Delete task
 
 ### What's next

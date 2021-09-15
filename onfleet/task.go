@@ -191,3 +191,20 @@ func (s *TasksService) Update(ctx context.Context, taskId string, payload *TaskU
 
 	return &res, nil
 }
+
+// Get task
+// https://docs.onfleet.com/reference#get-single-task
+func (s *TasksService) Get(ctx context.Context, taskId string) (*Task, error) {
+	var res Task
+	req, err := s.client.NewRequest("GET", "tasks/"+taskId, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = s.client.Do(ctx, req, &res)
+	if err != nil {
+		return nil, err
+	}
+
+	return &res, nil
+}
