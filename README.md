@@ -29,7 +29,7 @@ fmt.Printf("%+v\n", workers)
   - [ ] Create worker
   - [x] List workers
   - [x] Get workers by location
-  - [ ] Get single worker
+  - [x] Get single worker
   - [ ] Update worker
   - [ ] Delete worker
 

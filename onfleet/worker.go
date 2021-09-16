@@ -2,6 +2,7 @@ package onfleet
 
 import (
 	"context"
+
 	"github.com/google/go-querystring/query"
 )
 
@@ -86,6 +87,23 @@ func (s *WorkersService) Location(ctx context.Context, opts *WorkersLocationOpti
 
 	err := s.getMany(ctx, "workers/location", opts, &res)
 	return nil, err
+}
+
+// Get worker
+// https://docs.onfleet.com/reference#get-single-worker
+func (s *WorkersService) Get(ctx context.Context, workerId string) (*Worker, error) {
+	var res Worker
+	req, err := s.client.NewRequest("GET", "workers/"+workerId, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = s.client.Do(ctx, req, &res)
+	if err != nil {
+		return nil, err
+	}
+
+	return &res, nil
 }
 
 func (s *WorkersService) getMany(ctx context.Context, path string, opts interface{}, v interface{}) error {
