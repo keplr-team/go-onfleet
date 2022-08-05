@@ -38,6 +38,13 @@ type Task struct {
 	DidAutoAssign           bool              `json:"didAutoAssign"`
 }
 
+type Metadata struct {
+	Name       string      `json:"name"`
+	Type       string      `json:"type"`
+	Value      interface{} `json:"value"`
+	Visibility []string    `json:"visibility"`
+}
+
 type CompletionDetails struct {
 	Events []interface{} `json:"events"`
 	Time   interface{}   `json:"time"`
@@ -96,7 +103,7 @@ type TaskCreatePayload struct {
 	CompleteAfter int64         `json:"completeAfter"`
 	Notes         string        `json:"notes"`
 	Container     Container     `json:"container"`
-	Metadata      []interface{} `json:"metadata"`
+	Metadata      []Metadata    `json:"metadata"`
 }
 
 type TaskUpdatePayload struct {
