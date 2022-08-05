@@ -96,6 +96,7 @@ type TaskCreatePayload struct {
 	CompleteAfter int64         `json:"completeAfter"`
 	Notes         string        `json:"notes"`
 	Container     Container     `json:"container"`
+	Metadata      []interface{} `json:"metadata"`
 }
 
 type TaskUpdatePayload struct {
