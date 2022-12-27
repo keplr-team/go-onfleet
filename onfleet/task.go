@@ -46,8 +46,9 @@ type Metadata struct {
 }
 
 type CompletionDetails struct {
-	Events []interface{} `json:"events"`
-	Time   interface{}   `json:"time"`
+	Events        []interface{} `json:"events"`
+	Time          interface{}   `json:"time"`
+	FailureReason string        `json:"failureReason"`
 }
 
 type Overrides struct {
@@ -107,11 +108,13 @@ type TaskCreatePayload struct {
 }
 
 type TaskUpdatePayload struct {
-	Destination   *Destination  `json:"destination,omitempty"`
-	Recipients    []*Recipients `json:"recipients,omitempty"`
-	CompleteAfter int64         `json:"completeAfter,omitempty"`
-	Notes         string        `json:"notes,omitempty"`
-	Container     Container     `json:"container,omitempty"`
+	Destination       *Destination      `json:"destination,omitempty"`
+	Recipients        []*Recipients     `json:"recipients,omitempty"`
+	CompleteAfter     int64             `json:"completeAfter,omitempty"`
+	Notes             string            `json:"notes,omitempty"`
+	Container         Container         `json:"container,omitempty"`
+	CompletionDetails CompletionDetails `json:"completionDetails"`
+	State             int               `json:"state"`
 }
 
 type TasksCreatePayload struct {
