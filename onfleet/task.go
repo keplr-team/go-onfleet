@@ -46,6 +46,8 @@ type Metadata struct {
 }
 
 type CompletionDetails struct {
+	Success       bool          `json:"success"`
+	Notes         string        `json:"notes"`
 	Events        []interface{} `json:"events"`
 	Time          interface{}   `json:"time"`
 	FailureReason string        `json:"failureReason"`
@@ -115,6 +117,10 @@ type TaskUpdatePayload struct {
 	Container         Container         `json:"container,omitempty"`
 	CompletionDetails CompletionDetails `json:"completionDetails"`
 	State             int               `json:"state"`
+}
+
+type TaskCompletePayload struct {
+	CompletionDetails CompletionDetails `json:"completionDetails"`
 }
 
 type TasksCreatePayload struct {
@@ -191,6 +197,21 @@ func (s *TasksService) Create(ctx context.Context, payload *TasksCreatePayload) 
 func (s *TasksService) Update(ctx context.Context, taskId string, payload *TaskUpdatePayload) (*Task, error) {
 	var res Task
 	req, err := s.client.NewRequest("PUT", "tasks/"+taskId, payload)
+	if err != nil {
+		return nil, err
+	}
+
+	err = s.client.Do(ctx, req, &res)
+	if err != nil {
+		return nil, err
+	}
+
+	return &res, nil
+}
+
+func (s *TasksService) Complete(ctx context.Context, taskId string, payload *TaskCompletePayload) (*Task, error) {
+	var res Task
+	req, err := s.client.NewRequest("POST", "tasks/"+taskId+"/complete", payload)
 	if err != nil {
 		return nil, err
 	}
