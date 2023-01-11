@@ -101,12 +101,13 @@ type TasksListOptions struct {
 }
 
 type TaskCreatePayload struct {
-	Destination   *Destination  `json:"destination"`
-	Recipients    []*Recipients `json:"recipients"`
-	CompleteAfter int64         `json:"completeAfter"`
-	Notes         string        `json:"notes"`
-	Container     Container     `json:"container"`
-	Metadata      []Metadata    `json:"metadata"`
+	Destination    *Destination  `json:"destination"`
+	Recipients     []*Recipients `json:"recipients"`
+	CompleteAfter  int64         `json:"completeAfter"`
+	CompleteBefore int64         `json:"completeBefore"`
+	Notes          string        `json:"notes"`
+	Container      Container     `json:"container"`
+	Metadata       []Metadata    `json:"metadata"`
 }
 
 type TaskUpdatePayload struct {
