@@ -241,3 +241,20 @@ func (s *TasksService) Get(ctx context.Context, taskId string) (*Task, error) {
 
 	return &res, nil
 }
+
+// Delete task
+// https://docs.onfleet.com/reference/delete-task
+func (s *TasksService) Delete(ctx context.Context, taskId string) (*Task, error) {
+	var res Task
+	req, err := s.client.NewRequest("DELETE", "tasks/"+taskId, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = s.client.Do(ctx, req, &res)
+	if err != nil {
+		return nil, err
+	}
+
+	return &res, nil
+}
