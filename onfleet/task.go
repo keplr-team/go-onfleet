@@ -62,6 +62,7 @@ type Overrides struct {
 type Container struct {
 	Type   string `json:"type"`
 	Worker string `json:"worker"`
+	Team   string `json:"team"`
 }
 
 type Recipients struct {
