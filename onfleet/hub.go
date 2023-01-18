@@ -25,6 +25,10 @@ type Hub struct {
 	Teams    []string  `json:"teams,omitempty"`
 }
 
+type HubsServiceInterface interface {
+	List(ctx context.Context) ([]Hub, error)
+}
+
 func (s *HubsService) List(ctx context.Context) ([]Hub, error) {
 	req, err := s.client.NewRequest("GET", "hubs", nil)
 	if err != nil {

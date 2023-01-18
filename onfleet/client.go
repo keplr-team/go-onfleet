@@ -19,23 +19,37 @@ type Client struct {
 	client  *http.Client
 
 	// Onfleet resources endpoints
-	Organization *OrganizationService
-	Workers      *WorkersService
-	Hubs         *HubsService
-	Teams        *TeamsService
-	Tasks        *TasksService
+	organization OrganizationServiceInterface
+	workers      WorkersServiceInterface
+	hubs         HubsServiceInterface
+	teams        TeamServiceInterface
+	tasks        TasksServiceInterface
 }
 
 type service struct {
-	client *Client
+	client ClientInterface
 }
+
+type ClientInterface interface {
+	Init(apiKey string)
+	WithBaseURL(baseURL string)
+	NewRequest(method string, path string, body interface{}) (*http.Request, error)
+	Do(ctx context.Context, req *http.Request, v interface{}) error
+	Tasks() TasksServiceInterface
+}
+
+func (c *Client) Organization() OrganizationServiceInterface { return c.organization }
+func (c *Client) Workers() WorkersServiceInterface           { return c.workers }
+func (c *Client) Hubs() HubsServiceInterface                 { return c.hubs }
+func (c *Client) Teams() TeamServiceInterface                { return c.teams }
+func (c *Client) Tasks() TasksServiceInterface               { return c.tasks }
 
 func (c *Client) WithBaseURL(baseURL string) {
 	url, _ := url.Parse(baseURL)
 	c.baseURL = url
 }
 
-func NewClient(apiKey string) *Client {
+func (c *Client) Init(apiKey string) {
 	url, _ := url.Parse(defaultBaseURL)
 	transport := basicAuthTransport{Username: apiKey}
 
@@ -45,13 +59,13 @@ func NewClient(apiKey string) *Client {
 	}
 	svc := service{client: &client}
 
-	client.Organization = (*OrganizationService)(&svc)
-	client.Workers = (*WorkersService)(&svc)
-	client.Hubs = (*HubsService)(&svc)
-	client.Teams = (*TeamsService)(&svc)
-	client.Tasks = (*TasksService)(&svc)
+	client.organization = (*OrganizationService)(&svc)
+	client.workers = (*WorkersService)(&svc)
+	client.hubs = (*HubsService)(&svc)
+	client.teams = (*TeamService)(&svc)
+	client.tasks = (*TasksService)(&svc)
 
-	return &client
+	*c = client
 }
 
 func (c *Client) NewRequest(method string, path string, body interface{}) (*http.Request, error) {

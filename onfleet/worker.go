@@ -64,18 +64,24 @@ type WorkersListOptions struct {
 	Phones []string           `url:"phones,omitempty"`
 }
 
+type WorkersLocationOptions struct {
+	Longitude float64  `url:"longitude,omitempty"`
+	Latitude  float64  `url:"latitude,omitempty"`
+	Radius    *float64 `url:"radius,omitempty"`
+}
+
+type WorkersServiceInterface interface {
+	List(ctx context.Context, opts *WorkersListOptions) ([]Worker, error)
+	Location(ctx context.Context, opts *WorkersLocationOptions) ([]Worker, error)
+	Get(ctx context.Context, workerId string) (*Worker, error)
+}
+
 // List list all workers
 // https://docs.onfleet.com/reference#list-workers
 func (s *WorkersService) List(ctx context.Context, opts *WorkersListOptions) ([]Worker, error) {
 	var workers []Worker
 	err := s.getMany(ctx, "workers", opts, &workers)
 	return workers, err
-}
-
-type WorkersLocationOptions struct {
-	Longitude float64  `url:"longitude,omitempty"`
-	Latitude  float64  `url:"latitude,omitempty"`
-	Radius    *float64 `url:"radius,omitempty"`
 }
 
 // Location get workers by location
