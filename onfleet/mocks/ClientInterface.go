@@ -30,6 +30,22 @@ func (_m *ClientInterface) Do(ctx context.Context, req *http.Request, v interfac
 	return r0
 }
 
+// Hubs provides a mock function with given fields:
+func (_m *ClientInterface) Hubs() onfleet.HubsServiceInterface {
+	ret := _m.Called()
+
+	var r0 onfleet.HubsServiceInterface
+	if rf, ok := ret.Get(0).(func() onfleet.HubsServiceInterface); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(onfleet.HubsServiceInterface)
+		}
+	}
+
+	return r0
+}
+
 // Init provides a mock function with given fields: apiKey
 func (_m *ClientInterface) Init(apiKey string) {
 	_m.Called(apiKey)
@@ -58,6 +74,22 @@ func (_m *ClientInterface) NewRequest(method string, path string, body interface
 	return r0, r1
 }
 
+// Organization provides a mock function with given fields:
+func (_m *ClientInterface) Organization() onfleet.OrganizationServiceInterface {
+	ret := _m.Called()
+
+	var r0 onfleet.OrganizationServiceInterface
+	if rf, ok := ret.Get(0).(func() onfleet.OrganizationServiceInterface); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(onfleet.OrganizationServiceInterface)
+		}
+	}
+
+	return r0
+}
+
 // Tasks provides a mock function with given fields:
 func (_m *ClientInterface) Tasks() onfleet.TasksServiceInterface {
 	ret := _m.Called()
@@ -74,9 +106,41 @@ func (_m *ClientInterface) Tasks() onfleet.TasksServiceInterface {
 	return r0
 }
 
+// Teams provides a mock function with given fields:
+func (_m *ClientInterface) Teams() onfleet.TeamServiceInterface {
+	ret := _m.Called()
+
+	var r0 onfleet.TeamServiceInterface
+	if rf, ok := ret.Get(0).(func() onfleet.TeamServiceInterface); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(onfleet.TeamServiceInterface)
+		}
+	}
+
+	return r0
+}
+
 // WithBaseURL provides a mock function with given fields: baseURL
 func (_m *ClientInterface) WithBaseURL(baseURL string) {
 	_m.Called(baseURL)
+}
+
+// Workers provides a mock function with given fields:
+func (_m *ClientInterface) Workers() onfleet.WorkersServiceInterface {
+	ret := _m.Called()
+
+	var r0 onfleet.WorkersServiceInterface
+	if rf, ok := ret.Get(0).(func() onfleet.WorkersServiceInterface); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(onfleet.WorkersServiceInterface)
+		}
+	}
+
+	return r0
 }
 
 type mockConstructorTestingTNewClientInterface interface {

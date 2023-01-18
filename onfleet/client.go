@@ -35,6 +35,10 @@ type ClientInterface interface {
 	WithBaseURL(baseURL string)
 	NewRequest(method string, path string, body interface{}) (*http.Request, error)
 	Do(ctx context.Context, req *http.Request, v interface{}) error
+	Organization() OrganizationServiceInterface
+	Workers() WorkersServiceInterface
+	Hubs() HubsServiceInterface
+	Teams() TeamServiceInterface
 	Tasks() TasksServiceInterface
 }
 
