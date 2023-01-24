@@ -9,6 +9,10 @@ type Admin struct {
 	Name string `json:"name"`
 }
 
+type AdminServiceInterface interface {
+	List(ctx context.Context) ([]Admin, error)
+}
+
 func (s *AdminsService) List(ctx context.Context) ([]Admin, error) {
 	req, err := s.client.NewRequest("GET", "admins", nil)
 	if err != nil {

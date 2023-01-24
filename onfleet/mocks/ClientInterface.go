@@ -16,6 +16,22 @@ type ClientInterface struct {
 	mock.Mock
 }
 
+// Admins provides a mock function with given fields:
+func (_m *ClientInterface) Admins() onfleet.AdminServiceInterface {
+	ret := _m.Called()
+
+	var r0 onfleet.AdminServiceInterface
+	if rf, ok := ret.Get(0).(func() onfleet.AdminServiceInterface); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(onfleet.AdminServiceInterface)
+		}
+	}
+
+	return r0
+}
+
 // Do provides a mock function with given fields: ctx, req, v
 func (_m *ClientInterface) Do(ctx context.Context, req *http.Request, v interface{}) error {
 	ret := _m.Called(ctx, req, v)
