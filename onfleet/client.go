@@ -24,6 +24,7 @@ type Client struct {
 	Hubs         *HubsService
 	Teams        *TeamsService
 	Tasks        *TasksService
+	Admins       *AdminsService
 }
 
 type service struct {
@@ -50,6 +51,7 @@ func NewClient(apiKey string) *Client {
 	client.Hubs = (*HubsService)(&svc)
 	client.Teams = (*TeamsService)(&svc)
 	client.Tasks = (*TasksService)(&svc)
+	client.Admins = (*AdminsService)(&svc)
 
 	return &client
 }
