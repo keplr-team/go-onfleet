@@ -24,6 +24,7 @@ type Client struct {
 	hubs         HubsServiceInterface
 	teams        TeamServiceInterface
 	tasks        TasksServiceInterface
+	admins       AdminServiceInterface
 }
 
 type service struct {
@@ -40,6 +41,7 @@ type ClientInterface interface {
 	Hubs() HubsServiceInterface
 	Teams() TeamServiceInterface
 	Tasks() TasksServiceInterface
+	Admins() AdminServiceInterface
 }
 
 func (c *Client) Organization() OrganizationServiceInterface { return c.organization }
@@ -47,6 +49,7 @@ func (c *Client) Workers() WorkersServiceInterface           { return c.workers 
 func (c *Client) Hubs() HubsServiceInterface                 { return c.hubs }
 func (c *Client) Teams() TeamServiceInterface                { return c.teams }
 func (c *Client) Tasks() TasksServiceInterface               { return c.tasks }
+func (c *Client) Admins() AdminServiceInterface              { return c.admins }
 
 func (c *Client) WithBaseURL(baseURL string) {
 	url, _ := url.Parse(baseURL)
