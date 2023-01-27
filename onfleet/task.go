@@ -145,6 +145,15 @@ type TasksCreateReturn struct {
 	} `json:"errors"`
 }
 
+type TasksServiceInterface interface {
+	List(ctx context.Context, opts *TasksListOptions) ([]Task, error)
+	Create(ctx context.Context, payload *TasksCreatePayload) ([]Task, error)
+	Update(ctx context.Context, taskId string, payload *TaskUpdatePayload) (*Task, error)
+	Complete(ctx context.Context, taskId string, payload *TaskCompletePayload) (*Task, error)
+	Get(ctx context.Context, taskId string) (*Task, error)
+	Delete(ctx context.Context, taskId string) (*Task, error)
+}
+
 // List all tasks
 // https://docs.onfleet.com/reference#list-tasks
 func (s *TasksService) List(ctx context.Context, opts *TasksListOptions) ([]Task, error) {

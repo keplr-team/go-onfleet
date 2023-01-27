@@ -16,6 +16,10 @@ type Organization struct {
 	Delegatees       []string `json:"delegatees"`
 }
 
+type OrganizationServiceInterface interface {
+	Get(ctx context.Context) (*Organization, error)
+}
+
 func (s *OrganizationService) Get(ctx context.Context) (*Organization, error) {
 	req, err := s.client.NewRequest("GET", "organization", nil)
 	if err != nil {

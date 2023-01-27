@@ -2,7 +2,7 @@ package onfleet
 
 import "context"
 
-type TeamsService service
+type TeamService service
 
 type Team struct {
 	Id               string   `json:"id"`
@@ -15,7 +15,11 @@ type Team struct {
 	Tasks            []string `json:"tasks"`
 }
 
-func (s *TeamsService) List(ctx context.Context) ([]Team, error){
+type TeamServiceInterface interface {
+	List(ctx context.Context) ([]Team, error)
+}
+
+func (s *TeamService) List(ctx context.Context) ([]Team, error) {
 	req, err := s.client.NewRequest("GET", "teams", nil)
 	if err != nil {
 		return nil, err
