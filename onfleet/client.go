@@ -71,6 +71,7 @@ func (c *Client) Init(apiKey string) {
 	client.hubs = (*HubsService)(&svc)
 	client.teams = (*TeamService)(&svc)
 	client.tasks = (*TasksService)(&svc)
+	client.admins = (*AdminsService)(&svc)
 
 	*c = client
 }
