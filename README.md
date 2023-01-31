@@ -25,6 +25,9 @@ fmt.Printf("%+v\n", workers)
 
 ### What's inside
 
+- [] Admins API
+  - [x] List admins 
+
 - [ ] Workers API
   - [ ] Create worker
   - [x] List workers
