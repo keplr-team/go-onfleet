@@ -5,8 +5,17 @@ import "context"
 type AdminsService service
 
 type Admin struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID               string   `json:"id"`
+	TimeCreated      int64    `json:"timeCreated"`
+	TimeLastModified int64    `json:"timeLastModified"`
+	Organization     string   `json:"organization"`
+	Email            string   `json:"email"`
+	Type             string   `json:"type"`
+	Name             string   `json:"name"`
+	IsActive         bool     `json:"isActive"`
+	IsReadOnly       bool     `json:"isReadOnly"`
+	Phone            string   `json:"phone"`
+	Teams            []string `json:"teams"`
 }
 
 type AdminServiceInterface interface {
