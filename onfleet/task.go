@@ -110,6 +110,7 @@ type TaskCreatePayload struct {
 	Container      Container     `json:"container"`
 	Metadata       []Metadata    `json:"metadata"`
 	Quantity       int64         `json:"quantity"`
+	ServiceTime    int64         `json:"serviceTime"`
 }
 
 type TaskUpdatePayload struct {
